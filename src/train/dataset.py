@@ -6,7 +6,8 @@ import numpy as np
 from torch.utils.data import Dataset
 
 from .util import *
-
+from annotator.content import ContentDetector
+apply_content = ContentDetector()
 
 class UniDataset(Dataset):
     def __init__(self,
@@ -22,13 +23,13 @@ class UniDataset(Dataset):
                  drop_each_cond_prob):
         
         file_ids, self.annos = read_anno(anno_path)
-        self.image_paths = [os.path.join(image_dir, file_id + '.jpg') for file_id in file_ids]
+        self.image_paths = [os.path.join(image_dir, file_id + '.png') for file_id in file_ids]
         self.local_paths = {}
         for local_type in local_type_list:
-            self.local_paths[local_type] = [os.path.join(condition_root, local_type, file_id + '.jpg') for file_id in file_ids]
+            self.local_paths[local_type] = [os.path.join(condition_root, local_type, file_id + '.png') for file_id in file_ids]
         self.global_paths = {}
         for global_type in global_type_list:
-            self.global_paths[global_type] = [os.path.join(condition_root, global_type, file_id + '.npy') for file_id in file_ids]
+            self.global_paths[global_type] = [os.path.join(condition_root, global_type, file_id + '.png') for file_id in file_ids]
         
         self.local_type_list = local_type_list
         self.global_type_list = global_type_list
@@ -39,6 +40,8 @@ class UniDataset(Dataset):
         self.drop_each_cond_prob = drop_each_cond_prob
     
     def __getitem__(self, index):
+        # print(self.image_paths[index])
+        
         image = cv2.imread(self.image_paths[index])
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = cv2.resize(image, (self.resolution, self.resolution))
@@ -54,14 +57,28 @@ class UniDataset(Dataset):
 
         local_conditions = []
         for local_file in local_files:
+            # print(local_files)
+            
             condition = cv2.imread(local_file)
             condition = cv2.cvtColor(condition, cv2.COLOR_BGR2RGB)
             condition = cv2.resize(condition, (self.resolution, self.resolution))
             condition = condition.astype(np.float32) / 255.0
             local_conditions.append(condition)
+            
         global_conditions = []
         for global_file in global_files:
-            condition = np.load(global_file)
+            content_image = cv2.imread(global_file)
+            # content_image = cv2.cvtColor(content_image, cv2.COLOR_BGR2RGB) 
+            # content_image = cv2.resize(content_image, (self.resolution, self.resolution))
+            # content_image = content_image.astype(np.float32) / 255.0
+            
+            if global_file is not None:
+                content_emb = apply_content(content_image)
+            else:
+                content_emb = np.zeros((768))
+            content_emb.seek(0)
+            # condition = np.load(content_emb, allow_pickle=True)
+            condition = np.zeros((768))
             global_conditions.append(condition)
 
         if random.random() < self.drop_txt_prob:

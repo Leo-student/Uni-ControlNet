@@ -12,7 +12,7 @@ from pytorch_lightning.utilities.distributed import rank_zero_only
 class ImageLogger(Callback):
     def __init__(self, batch_frequency=2000, max_images=4, clamp=True, increase_log_steps=True,
                  rescale=True, disabled=False, log_on_batch_idx=False, log_first_step=False,
-                 log_images_kwargs=None, num_local_conditions=7):
+                 log_images_kwargs=None, num_local_conditions=2): # change according to the number of conditions
         super().__init__()
         self.rescale = rescale
         self.batch_freq = batch_frequency
@@ -32,9 +32,11 @@ class ImageLogger(Callback):
         for k in images:
             if k == 'local_control':
                 _, _, h, w = images[k].shape
+                # print(f'35 :images :{images}')
                 if h == w == 1:
                     continue
                 for local_idx in range(self.num_local_conditions):
+                    # print(f'39: local {local_idx}')
                     grid = torchvision.utils.make_grid(images[k][:, 3*local_idx: 3*(local_idx+1), :, : ], nrow=4)
                     if self.rescale:
                         grid = (grid + 1.0) / 2.0  # -1,1 -> 0,1; c,h,w
@@ -44,6 +46,8 @@ class ImageLogger(Callback):
                     filename = "gs-{:06}_e-{:06}_b-{:06}_{}_{}.png".format(global_step, current_epoch, batch_idx, k, local_idx)
                     path = os.path.join(root, filename)
                     os.makedirs(os.path.split(path)[0], exist_ok=True)
+                    # print(f'path {path} grid {grid.shape}')
+                    
                     Image.fromarray(grid).save(path)
             elif k != 'global_control':
                 grid = torchvision.utils.make_grid(images[k], nrow=4)
@@ -74,6 +78,7 @@ class ImageLogger(Callback):
 
             for k in images:
                 N = min(images[k].shape[0], self.max_images)
+                # print(f'81:{N,images[k].shape, k, self.max_images }')
                 images[k] = images[k][:N]
                 if isinstance(images[k], torch.Tensor):
                     images[k] = images[k].detach().cpu()

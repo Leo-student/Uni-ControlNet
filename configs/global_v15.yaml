@@ -71,7 +71,7 @@ data:
   params:
     anno_path: ./data/anno.txt
     image_dir: ./data/images
-    condition_root: ./data/conditions
+    condition_root: ./data/conditions/
     local_type_list: []
     global_type_list: [content]
     resolution: 512

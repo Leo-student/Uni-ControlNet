@@ -37,27 +37,27 @@ apply_content = ContentDetector()
 
 
 model = create_model('./configs/uni_v15.yaml').cpu()
-model.load_state_dict(load_state_dict('./ckpt/flare.ckpt', location='cuda'))
+model.load_state_dict(load_state_dict('./ckpt/flare2.ckpt', location='cuda'))
 model = model.cuda()
 ddim_sampler = DDIMSampler(model)
 
 
-def process(canny_image, mlsd_image, hed_image, sketch_image, openpose_image, midas_image, seg_image, content_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, strength, scale, seed, eta, low_threshold, high_threshold, value_threshold, distance_threshold, alpha, global_strength):
+def process(canny_image, seg_image, content_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, strength, scale, seed, eta, low_threshold, high_threshold, value_threshold, distance_threshold, alpha, global_strength):
     
     seed_everything(seed)
 
     if canny_image is not None:
         anchor_image = canny_image
-    elif mlsd_image is not None:
-        anchor_image = mlsd_image
-    elif hed_image is not None:
-        anchor_image = hed_image
-    elif sketch_image is not None:
-        anchor_image = sketch_image
-    elif openpose_image is not None:
-        anchor_image = openpose_image
-    elif midas_image is not None:
-        anchor_image = midas_image
+    # elif mlsd_image is not None:
+    #     anchor_image = mlsd_image
+    # elif hed_image is not None:
+    #     anchor_image = hed_image
+    # elif sketch_image is not None:
+    #     anchor_image = sketch_image
+    # elif openpose_image is not None:
+    #     anchor_image = openpose_image
+    # elif midas_image is not None:
+    #     anchor_image = midas_image
     elif seg_image is not None:
         anchor_image = seg_image
     elif content_image is not None:
@@ -72,32 +72,32 @@ def process(canny_image, mlsd_image, hed_image, sketch_image, openpose_image, mi
             canny_detected_map = HWC3(apply_canny(HWC3(canny_image), low_threshold, high_threshold))
         else:
             canny_detected_map = np.zeros((H, W, C)).astype(np.uint8)
-        if mlsd_image is not None:
-            mlsd_image = cv2.resize(mlsd_image, (W, H))
-            mlsd_detected_map = HWC3(apply_mlsd(HWC3(mlsd_image), value_threshold, distance_threshold))
-        else:
-            mlsd_detected_map = np.zeros((H, W, C)).astype(np.uint8)
-        if hed_image is not None:
-            hed_image = cv2.resize(hed_image, (W, H))
-            hed_detected_map = HWC3(apply_hed(HWC3(hed_image)))
-        else:
-            hed_detected_map = np.zeros((H, W, C)).astype(np.uint8)
-        if sketch_image is not None:
-            sketch_image = cv2.resize(sketch_image, (W, H))
-            sketch_detected_map = HWC3(apply_sketch(HWC3(sketch_image)))            
-        else:
-            sketch_detected_map = np.zeros((H, W, C)).astype(np.uint8)
-        if openpose_image is not None:
-            openpose_image = cv2.resize(openpose_image, (W, H))
-            openpose_detected_map, _ = apply_openpose(HWC3(openpose_image), False)
-            openpose_detected_map = HWC3(openpose_detected_map)
-        else:
-            openpose_detected_map = np.zeros((H, W, C)).astype(np.uint8)
-        if midas_image is not None:
-            midas_image = cv2.resize(midas_image, (W, H))
-            midas_detected_map = HWC3(apply_midas(HWC3(midas_image), alpha))
-        else:
-            midas_detected_map = np.zeros((H, W, C)).astype(np.uint8)
+        # if mlsd_image is not None:
+        #     mlsd_image = cv2.resize(mlsd_image, (W, H))
+        #     mlsd_detected_map = HWC3(apply_mlsd(HWC3(mlsd_image), value_threshold, distance_threshold))
+        # else:
+        #     mlsd_detected_map = np.zeros((H, W, C)).astype(np.uint8)
+        # if hed_image is not None:
+        #     hed_image = cv2.resize(hed_image, (W, H))
+        #     hed_detected_map = HWC3(apply_hed(HWC3(hed_image)))
+        # else:
+        #     hed_detected_map = np.zeros((H, W, C)).astype(np.uint8)
+        # if sketch_image is not None:
+        #     sketch_image = cv2.resize(sketch_image, (W, H))
+        #     sketch_detected_map = HWC3(apply_sketch(HWC3(sketch_image)))            
+        # else:
+        #     sketch_detected_map = np.zeros((H, W, C)).astype(np.uint8)
+        # if openpose_image is not None:
+        #     openpose_image = cv2.resize(openpose_image, (W, H))
+        #     openpose_detected_map, _ = apply_openpose(HWC3(openpose_image), False)
+        #     openpose_detected_map = HWC3(openpose_detected_map)
+        # else:
+        #     openpose_detected_map = np.zeros((H, W, C)).astype(np.uint8)
+        # if midas_image is not None:
+        #     midas_image = cv2.resize(midas_image, (W, H))
+        #     midas_detected_map = HWC3(apply_midas(HWC3(midas_image), alpha))
+        # else:
+        #     midas_detected_map = np.zeros((H, W, C)).astype(np.uint8)
         if seg_image is not None:
             seg_image = cv2.resize(seg_image, (W, H))
             seg_detected_map, _ = apply_seg(HWC3(seg_image))
@@ -110,11 +110,11 @@ def process(canny_image, mlsd_image, hed_image, sketch_image, openpose_image, mi
             content_emb = np.zeros((768))
 
         detected_maps_list = [canny_detected_map, 
-                              mlsd_detected_map, 
-                              hed_detected_map,
-                              sketch_detected_map,
-                              openpose_detected_map,
-                              midas_detected_map,
+                            #   mlsd_detected_map, 
+                            #   hed_detected_map,
+                            #   sketch_detected_map,
+                            #   openpose_detected_map,
+                            #   midas_detected_map,
                               seg_detected_map                          
                               ]
         detected_maps = np.concatenate(detected_maps_list, axis=2)
@@ -159,14 +159,17 @@ with block:
         gr.Markdown("## Uni-ControlNet Demo")
     with gr.Row():
         canny_image = gr.Image(source='upload', type="numpy", label='canny')
-        mlsd_image = gr.Image(source='upload', type="numpy", label='mlsd')
-        hed_image = gr.Image(source='upload', type="numpy", label='hed')
-        sketch_image = gr.Image(source='upload', type="numpy", label='sketch')
-    with gr.Row():
-        openpose_image = gr.Image(source='upload', type="numpy", label='openpose')
-        midas_image = gr.Image(source='upload', type="numpy", label='midas')
         seg_image = gr.Image(source='upload', type="numpy", label='seg')
         content_image = gr.Image(source='upload', type="numpy", label='content')
+        
+        # mlsd_image = gr.Image(source='upload', type="numpy", label='mlsd')
+        # hed_image = gr.Image(source='upload', type="numpy", label='hed')
+        # sketch_image = gr.Image(source='upload', type="numpy", label='sketch')
+    # with gr.Row():
+    #     openpose_image = gr.Image(source='upload', type="numpy", label='openpose')
+    #     midas_image = gr.Image(source='upload', type="numpy", label='midas')
+    #     seg_image = gr.Image(source='upload', type="numpy", label='seg')
+    #     content_image = gr.Image(source='upload', type="numpy", label='content')
     with gr.Row():
         prompt = gr.Textbox(label="Prompt")
     with gr.Row():
@@ -201,7 +204,30 @@ with block:
     with gr.Row():
         cond_gallery = gr.Gallery(label='Output', show_label=False, elem_id="gallery").style(grid=4, height='auto')
     
-    ips = [canny_image, mlsd_image, hed_image, sketch_image, openpose_image, midas_image, seg_image, content_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, strength, scale, seed, eta, low_threshold, high_threshold, value_threshold, distance_threshold, alpha, global_strength]
+    ips = [canny_image, 
+        #    mlsd_image, 
+        #    hed_image, 
+        #    sketch_image, 
+        #    openpose_image, 
+        #    midas_image, 
+           seg_image, 
+           content_image, 
+           prompt, 
+           a_prompt, 
+           n_prompt, 
+           num_samples, 
+           image_resolution, 
+           ddim_steps, 
+           strength, 
+           scale, 
+           seed, 
+           eta, 
+           low_threshold, 
+           high_threshold, 
+           value_threshold, 
+           distance_threshold, 
+           alpha, 
+           global_strength]
     run_button.click(fn=process, inputs=ips, outputs=[image_gallery, cond_gallery])
 
 
