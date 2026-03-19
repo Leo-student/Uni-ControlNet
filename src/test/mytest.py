@@ -56,7 +56,7 @@ a_prompt = 'best quality, extremely detailed'
 n_prompt = 'longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality'
 
 ''' test path '''
-test_path = '/export/lianjz/workspace/control/Uni-ControlNet/data/conditions/lq'
+test_path = '/home/lianjz/workspace/control/Uni-ControlNet/data/conditions/lq'
 test_names = os.listdir(test_path)
 
 

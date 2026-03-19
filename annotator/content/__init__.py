@@ -10,7 +10,7 @@ import numpy as np
 class ContentDetector:
     def __init__(self):
 
-        model_name = "/export/lianjz/workspace/control/clip-vit-large-patch14/"
+        model_name = "/home/lianjz/Uni-ControlNet/ckpt/clip-vit-large-patch14/"
 
         self.model = CLIPModel.from_pretrained(model_name, cache_dir=annotator_ckpts_path).cuda().eval()
         self.processor = AutoProcessor.from_pretrained(model_name, cache_dir=annotator_ckpts_path)

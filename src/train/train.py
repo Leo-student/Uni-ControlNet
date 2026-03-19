@@ -73,10 +73,15 @@ def main():
     )
         
     trainer = pl.Trainer(
-        gpus=gpus,
+        # gpus=gpus,
+            accelerator="cuda", devices=1,
+            # strategy="ddp",
+            precision=16,
+            # callbacks=[logger, checkpoint_callback],
         callbacks=[logger, checkpoint_callback], 
         default_root_dir=default_logdir,
         max_steps=training_steps,
+        strategy="ddp_find_unused_parameters_true"
     )
     trainer.fit(model,
         dataloader, 
