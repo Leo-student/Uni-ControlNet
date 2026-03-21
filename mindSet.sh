@@ -4,6 +4,10 @@ CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=1   python utils/prepare_weights.py 
 CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=1   python utils/prepare_weights.py integrate log_local/lightning_logs/version_8/checkpoints/epoch\=33-step\=100.ckpt log_global/lightning_logs/version_5/checkpoints/epoch_333-step_1000.ckpt  configs/uni_v15.yaml ckpt/flare3.ckpt
 得到的ckpt为 flare.ckpt
 
+
+# 0321 训练 合成ckpt
+CUDA_VISIBLE_DEVICES=3 CUDA_LAUNCH_BLOCKING=1   python utils/prepare_weights.py integrate log_local/lightning_logs/version_27/checkpoints/mscn_jetmap.ckpt ckpt/init_global.ckpt  configs/uni_v15.yaml ckpt/final_mscn_jetmap.ckpt
+
 test 
 python src/test/test.py 生成 新的图像与结果 
 
@@ -32,6 +36,8 @@ condition = np.load(content_emb, allow_pickle=True)
 global_conditions.append(condition)
 
 #test 是将global condition 
+
+
 
 
 

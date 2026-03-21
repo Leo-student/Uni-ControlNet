@@ -23,7 +23,7 @@ model:
         in_channels: 4
         model_channels: 320
         # local_channels: 21
-        local_channels: 9  # each channel with tree channels
+        local_channels: 6  # each channel with tree channels
         inject_channels: [192, 256, 384, 512]
         inject_layers: [1, 4, 7, 10]
         num_res_blocks: 2
@@ -82,15 +82,15 @@ model:
 data:
   target: src.train.dataset.UniDataset
   params:
-    anno_path: ./data/anno.txt
+    anno_path: ./data/anno_6.txt
     image_dir: ./data/images
     condition_root: ./data/conditions
     # local_type_list: [canny, mlsd, hed, sketch, openpose, midas, seg]
-    local_type_list: [lq, mscn, jetmap]
+    local_type_list: [lq, mscn]
     global_type_list: []
     resolution: 512
     drop_txt_prob: 1
     keep_all_cond_prob: 1
     drop_all_cond_prob: 0
     # drop_each_cond_prob: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
-    drop_each_cond_prob: [0, 0, 0]
+    drop_each_cond_prob: [0, 0]

@@ -1,0 +1,1 @@
+nohup ./train.sh > train—0321_09.log 2>&1 &

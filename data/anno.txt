@@ -1,110 +1,100 @@
-input_000001	mask lq
-input_000006	mask lq
-input_000008	mask lq
-input_000000	mask lq
-input_000002	mask lq
-input_000005	mask lq
-input_000009	mask lq
-input_000007	mask lq
-input_000004	mask lq
-input_000003	mask lq
-input_000027	mask lq
-input_000092	mask lq
-input_000046	mask lq
-input_000028	mask lq
-input_000087	mask lq
-input_000047	mask lq
-input_000042	mask lq
-input_000029	mask lq
-input_000057	mask lq
-input_000026	mask lq
-input_000001	mask lq
-input_000089	mask lq
-input_000050	mask lq
-input_000083	mask lq
-input_000012	mask lq
-input_000006	mask lq
-input_000085	mask lq
-input_000053	mask lq
-input_000059	mask lq
-input_000080	mask lq
-input_000016	mask lq
-input_000056	mask lq
-input_000074	mask lq
-input_000060	mask lq
-input_000049	mask lq
-input_000032	mask lq
-input_000070	mask lq
-input_000045	mask lq
-input_000023	mask lq
-input_000093	mask lq
-input_000058	mask lq
-input_000025	mask lq
-input_000091	mask lq
-input_000008	mask lq
-input_000000	mask lq
-input_000062	mask lq
-input_000039	mask lq
-input_000002	mask lq
-input_000055	mask lq
-input_000041	mask lq
-input_000036	mask lq
-input_000064	mask lq
-input_000086	mask lq
-input_000098	mask lq
-input_000005	mask lq
-input_000075	mask lq
-input_000033	mask lq
-input_000014	mask lq
-input_000037	mask lq
-input_000072	mask lq
-input_000052	mask lq
-input_000082	mask lq
-input_000030	mask lq
-input_000094	mask lq
-input_000090	mask lq
-input_000095	mask lq
-input_000009	mask lq
-input_000051	mask lq
-input_000013	mask lq
-input_000044	mask lq
-input_000024	mask lq
-input_000019	mask lq
-input_000076	mask lq
-input_000018	mask lq
-input_000031	mask lq
-input_000088	mask lq
-input_000007	mask lq
-input_000010	mask lq
-input_000061	mask lq
-input_000073	mask lq
-input_000065	mask lq
-input_000063	mask lq
-input_000022	mask lq
-input_000097	mask lq
-input_000069	mask lq
-input_000084	mask lq
-input_000081	mask lq
-input_000068	mask lq
-input_000034	mask lq
-input_000038	mask lq
-input_000011	mask lq
-input_000048	mask lq
-input_000054	mask lq
-input_000004	mask lq
-input_000017	mask lq
-input_000003	mask lq
-input_000077	mask lq
-input_000066	mask lq
-input_000096	mask lq
-input_000067	mask lq
-input_000021	mask lq
-input_000099	mask lq
-input_000078	mask lq
-input_000035	mask lq
-input_000079	mask lq
-input_000043	mask lq
-input_000020	mask lq
-input_000015	mask lq
-input_000071	mask lq
-input_000040	mask lq
+000000	lq mscn jetmap
+000001	lq mscn jetmap
+000002	lq mscn jetmap
+000003	lq mscn jetmap
+000004	lq mscn jetmap
+000005	lq mscn jetmap
+000006	lq mscn jetmap
+000007	lq mscn jetmap
+000008	lq mscn jetmap
+000009	lq mscn jetmap
+000010	lq mscn jetmap
+000011	lq mscn jetmap
+000012	lq mscn jetmap
+000013	lq mscn jetmap
+000014	lq mscn jetmap
+000015	lq mscn jetmap
+000016	lq mscn jetmap
+000017	lq mscn jetmap
+000018	lq mscn jetmap
+000019	lq mscn jetmap
+000020	lq mscn jetmap
+000021	lq mscn jetmap
+000022	lq mscn jetmap
+000023	lq mscn jetmap
+000024	lq mscn jetmap
+000025	lq mscn jetmap
+000026	lq mscn jetmap
+000027	lq mscn jetmap
+000028	lq mscn jetmap
+000029	lq mscn jetmap
+000030	lq mscn jetmap
+000031	lq mscn jetmap
+000032	lq mscn jetmap
+000033	lq mscn jetmap
+000034	lq mscn jetmap
+000035	lq mscn jetmap
+000036	lq mscn jetmap
+000037	lq mscn jetmap
+000038	lq mscn jetmap
+000039	lq mscn jetmap
+000040	lq mscn jetmap
+000041	lq mscn jetmap
+000042	lq mscn jetmap
+000043	lq mscn jetmap
+000044	lq mscn jetmap
+000045	lq mscn jetmap
+000046	lq mscn jetmap
+000047	lq mscn jetmap
+000048	lq mscn jetmap
+000049	lq mscn jetmap
+000050	lq mscn jetmap
+000051	lq mscn jetmap
+000052	lq mscn jetmap
+000053	lq mscn jetmap
+000054	lq mscn jetmap
+000055	lq mscn jetmap
+000056	lq mscn jetmap
+000057	lq mscn jetmap
+000058	lq mscn jetmap
+000059	lq mscn jetmap
+000060	lq mscn jetmap
+000061	lq mscn jetmap
+000062	lq mscn jetmap
+000063	lq mscn jetmap
+000064	lq mscn jetmap
+000065	lq mscn jetmap
+000066	lq mscn jetmap
+000067	lq mscn jetmap
+000068	lq mscn jetmap
+000069	lq mscn jetmap
+000070	lq mscn jetmap
+000071	lq mscn jetmap
+000072	lq mscn jetmap
+000073	lq mscn jetmap
+000074	lq mscn jetmap
+000075	lq mscn jetmap
+000076	lq mscn jetmap
+000077	lq mscn jetmap
+000078	lq mscn jetmap
+000079	lq mscn jetmap
+000080	lq mscn jetmap
+000081	lq mscn jetmap
+000082	lq mscn jetmap
+000083	lq mscn jetmap
+000084	lq mscn jetmap
+000085	lq mscn jetmap
+000086	lq mscn jetmap
+000087	lq mscn jetmap
+000088	lq mscn jetmap
+000089	lq mscn jetmap
+000090	lq mscn jetmap
+000091	lq mscn jetmap
+000092	lq mscn jetmap
+000093	lq mscn jetmap
+000094	lq mscn jetmap
+000095	lq mscn jetmap
+000096	lq mscn jetmap
+000097	lq mscn jetmap
+000098	lq mscn jetmap
+000099	lq mscn jetmap
